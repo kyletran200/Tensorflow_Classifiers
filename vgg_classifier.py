@@ -70,17 +70,17 @@ model.add(layers.MaxPooling2D(2,2))
 # 4 Convolutional Layers
 model.add(layers.Conv2D(512, (3, 3), activation='relu', padding='same'))
 model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
+# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
+# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
 
-# 1 Pooling Layer
-model.add(layers.MaxPooling2D(2,2))
+# # 1 Pooling Layer
+# model.add(layers.MaxPooling2D(2,2))
 
-# 4 Convolutional Layers
-model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
+# # 4 Convolutional Layers
+# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
+# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
+# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
+# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
 
 # 1 Pooling Layer
 model.add(layers.MaxPooling2D(2,2))
@@ -97,7 +97,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(train_images, train_labels, epochs=10, 
+history = model.fit(train_images, train_labels, batch_size=10, epochs=10, 
                     validation_data=(test_images, test_labels))
 
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
