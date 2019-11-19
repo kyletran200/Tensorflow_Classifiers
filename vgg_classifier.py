@@ -46,51 +46,54 @@ plt.show()
 
 model = models.Sequential()
 
-# 2 Convolutional Layers
-model.add(layers.Conv2D(64, (3, 3), activation='relu', input_shape=(32, 32, 3), padding='same'))
-model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
+model.add(layers.Conv2D(16, (3, 3), activation='relu', input_shape=(32, 32, 3), padding='same'))
+model.add(layers.BatchNormalization())
+
+model.add(layers.Conv2D(16, (3, 3), activation='relu', padding='same'))
+model.add(layers.BatchNormalization())
 
 # 1 pooling layer
 model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Dropout(0.2))
 
 # 2 Convolutional Layers
-model.add(layers.Conv2D(128, (3, 3), activation='relu', padding='same'))
-model.add(layers.Conv2D(128, (3, 3), activation='relu', padding='same'))
+model.add(layers.Conv2D(32, (3, 3), activation='relu', padding='same'))
+model.add(layers.BatchNormalization())
+
+model.add(layers.Conv2D(32, (3, 3), activation='relu', padding='same'))
+model.add(layers.BatchNormalization())
 
 # 1 Pooling Layer
 model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Dropout(0.3))
 
 # 2 Convolutional Layers
-model.add(layers.Conv2D(256, (3, 3), activation='relu', padding='same'))
-model.add(layers.Conv2D(256, (3, 3), activation='relu', padding='same'))
+model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
+model.add(layers.BatchNormalization())
+model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
+model.add(layers.BatchNormalization())
 
 # 1 Pooling Layer
 model.add(layers.MaxPooling2D(2,2))
+model.add(layers.Dropout(0.4))
 
 # 4 Convolutional Layers
-model.add(layers.Conv2D(512, (3, 3), activation='relu', padding='same'))
-model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
+model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
+model.add(layers.BatchNormalization())
+model.add(layers.Conv2D(64, (3, 3), activation='relu',padding='same'))
+model.add(layers.BatchNormalization())
 
-# # 1 Pooling Layer
-# model.add(layers.MaxPooling2D(2,2))
 
-# # 4 Convolutional Layers
-# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-# model.add(layers.Conv2D(512, (3, 3), activation='relu',padding='same'))
-
-# 1 Pooling Layer
 model.add(layers.MaxPooling2D(2,2))
+model.add(layers.Dropout(0.5))
+
 
 model.add(layers.Flatten())
-model.add(layers.Dense(4096, activation='relu'))
-model.add(layers.Dense(4096, activation='relu'))
+model.add(layers.Dense(64, activation='relu'))
 model.add(layers.Dense(10, activation='softmax'))
 
 model.summary()
+
 
 # Compile our model
 model.compile(optimizer='adam',
