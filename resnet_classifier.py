@@ -45,12 +45,12 @@ x = Conv2D(16,(3,3),strides = stride,padding = "same")(x)
 x = BatchNormalization(axis = CHANNEL_AXIS)(x)
 x = Activation("relu")(x)
 
-x = res_layer(x,32,dropout = 0.2)
-x = res_layer(x,32,dropout = 0.3)
-x = res_layer(x,32,dropout = 0.4,pooling = True)
-x = res_layer(x,64,dropout = 0.2)
-x = res_layer(x,64,dropout = 0.2,pooling = True)
-x = res_layer(x,256,dropout = 0.4)
+x = res_layer(x,32,dropout = 0.0)
+x = res_layer(x,32,dropout = 0.0)
+x = res_layer(x,32,dropout = 0.0,pooling = True)
+x = res_layer(x,64,dropout = 0.0)
+x = res_layer(x,64,dropout = 0.0,pooling = True)
+x = res_layer(x,256,dropout = 0.0)
 
 x = Flatten()(x)
 x = Dropout(0.4)(x)
@@ -67,7 +67,7 @@ model.compile(optimizer='SGD',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(train_images, train_labels, batch_size=10, epochs=20, 
+history = model.fit(train_images, train_labels, batch_size=10, epochs=10, 
                     validation_data=(test_images, test_labels))
 
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
