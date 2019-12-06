@@ -47,10 +47,10 @@ x = Activation("relu")(x)
 
 x = res_layer(x,32,dropout = 0.0)
 x = res_layer(x,32,dropout = 0.0)
-x = res_layer(x,32,dropout = 0.0,pooling = True)
-x = res_layer(x,64,dropout = 0.0)
-x = res_layer(x,64,dropout = 0.0,pooling = True)
-x = res_layer(x,256,dropout = 0.0)
+x = res_layer(x,32,dropout = 0.1,pooling = True)
+x = res_layer(x,64,dropout = 0.1)
+x = res_layer(x,64,dropout = 0.2,pooling = True)
+x = res_layer(x,256,dropout = 0.2)
 
 x = Flatten()(x)
 x = Dropout(0.4)(x)
@@ -67,7 +67,7 @@ model.compile(optimizer='SGD',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(train_images, train_labels, batch_size=10, epochs=10, 
+history = model.fit(train_images, train_labels, batch_size=10, epochs=20, 
                     validation_data=(test_images, test_labels))
 
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
